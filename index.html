@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <title>Checklist</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <p v-bind:title="message" v-for="todo in todos" :key="todo.id">
+    {{ todo.message }}
+    {{ message }}
+  </p>
+  </div>
+  <script>
+    const vm = Vue.createApp({
+      data(){
+        return {
+          message: 'Hello World !',
+          todos: [{ id:0, message: 'Foo' }, { id:1, message: 'Bar' }]
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
