@@ -4,20 +4,37 @@
   <meta name="viewport" content="width= , initial-scale=1.0">
   <title>Checklist</title>
   <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
 </head>
 <body>
   <div id="app">
-    <p v-bind:title="message" v-for="todo in todos" :key="todo.id">
-    {{ todo.message }}
-    {{ message }}
+    <h1>{{title}}</h1>
+    <input type="text" v-model="message" />
+    <button @click="ajouterNote" v-if=" message != '' ">ajouter</button>
+    <p v-bind:title="message" v-for="todo in todos" :key="todo.id" @click="inverser">
+    {{ todo.id }}
+    {{ todo.value }}
   </p>
   </div>
   <script>
     const vm = Vue.createApp({
       data(){
         return {
-          message: 'Hello World !',
-          todos: [{ id:0, message: 'Foo' }, { id:1, message: 'Bar' }]
+          title: 'Hello World !',
+          message: uuidv4(),
+          todos: [{ id:0, value: 'Foo' }, { id:1, value: 'Bar' }]
+        }
+      },
+      methods:{
+        inverser(){
+          this.todos.reverse();
+        },
+        ajouterNote(){
+          this.todos.push({
+            id: (this.todos.length - 1) + 1,
+            value: this.message
+          }),
+          this.message = uuidv4()
         }
       }
     }).mount('#app');
