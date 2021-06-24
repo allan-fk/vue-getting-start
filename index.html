@@ -12,9 +12,10 @@
     <input type="text" v-model="message" />
     <button @click="ajouterNote" v-if=" message != '' ">ajouter</button>
     <p v-bind:title="message" v-for="todo in todos" :key="todo.id" @click="inverser">
-    {{ todo.id }}
-    {{ todo.value }}
-  </p>
+      {{ todo.id }}
+      {{ todo.value }}
+    </p>
+    <note v-for="todo in todos" v-bind:content="todo.value" ></note>
   </div>
   <script>
     const vm = Vue.createApp({
@@ -37,7 +38,14 @@
           this.message = uuidv4()
         }
       }
-    }).mount('#app');
+    })
+
+    vm.component('note', {
+      props: ['content'],
+      template: `<p>{{content}}</p>`
+    })
+    
+    vm.mount('#app');
   </script>
 </body>
 </html>
