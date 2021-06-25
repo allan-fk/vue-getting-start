@@ -16,6 +16,7 @@
       {{ todo.value }}
     </p>
     <note v-for="todo in todos" v-bind:content="todo.value" ></note>
+    <ajouter @nouvellenote="ajouterNote2"></ajouter>
   </div>
   <script>
     const vm = Vue.createApp({
@@ -36,6 +37,12 @@
             value: this.message
           }),
           this.message = uuidv4()
+        },
+        ajouterNote2(message){
+          this.todos.push({
+            id: (this.todos.length - 1) + 1,
+            value: message
+          })
         }
       }
     })
@@ -43,6 +50,26 @@
     vm.component('note', {
       props: ['content'],
       template: `<p>{{content}}</p>`
+    })
+
+    vm.component('ajouter', {
+      props: [],
+      emits: ['nouvellenote'],
+      data(){
+        return{
+          message: 'Nouveau message'
+        }
+      },
+      methods:{
+        ajouterNote(){
+          this.$emit('nouvellenote', this.message)
+        }
+
+      },
+      template: `
+        <input type="text" v-model="message" />
+        <button @click="ajouterNote" v-if=" message != '' ">ajouter</button>
+      `
     })
     
     vm.mount('#app');
