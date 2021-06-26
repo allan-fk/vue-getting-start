@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <title>Vue Project</title>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+  <title>Vue Project</title>
 
-    <link rel="icon" href="./assets/img/vueLogo.png" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
-    <link href="./assets/style/style.css" rel="stylesheet" />
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <body>
+  <link rel="icon" href="./assets/img/vueLogo.png" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+  <link href="./assets/style/style.css" rel="stylesheet" />
+</head>
 
+<body>
+  <div id="app">
+    <p>
+      <!-- use router-link component for navigation. -->
+      <!-- specify the link by passing the `to` prop. -->
+      <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+        lol
+        <router-link to="/">Go to Home</router-link>
+        <router-link to="/about">Go to About</router-link>
+    </p>
+            <!-- route outlet -->
+    <!-- component matched by the route will render here -->
+    <router-view></router-view>
     <nav>
       <div class="nav-container">
         <div id="logo">
@@ -35,6 +47,12 @@
       </div>
     </nav>
 
-    <script src="./assets/js/script.js"></script>
-  </body>
+  </div>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/vue-router@4"></script>
+  <script src="./assets/js/vue.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+
 </html>
